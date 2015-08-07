@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<XmlConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+    <IpEntity>
+      <Id>8642b5b131bd423080f434528ca1b01f</Id>
+      <Name>联通</Name>
+      <IpAddress>192.168.11.231</IpAddress>
+      <SubnetMask>255.255.255.0</SubnetMask>
+      <Gateway>192.168.11.1</Gateway>
+      <DNS>114.114.114.114</DNS>
+      <SpareDNS>8.8.8.8</SpareDNS>
+    </IpEntity>
+    <IpEntity>
+      <Id>968a739bbd3e4a8188a9f9bf25689761</Id>
+      <Name>电信</Name>
+      <IpAddress>192.168.11.231</IpAddress>
+      <SubnetMask>255.255.255.0</SubnetMask>
+      <Gateway>192.168.11.99</Gateway>
+      <DNS>114.114.114.114</DNS>
+      <SpareDNS>8.8.8.8</SpareDNS>
+    </IpEntity>
+  </Items>
+</XmlConfig>

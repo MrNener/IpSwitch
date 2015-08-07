@@ -8,5 +8,11 @@ d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.ex
 d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.pdb
 d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.csprojResolveAssemblyReference.cache
 E:\SourcesTree\IpSwitch\IpSwitch\bin\Debug\IpSwitch.exe.config
+E:\SourcesTree\IpSwitch\IpSwitch\bin\Debug\IpSwitch.exe
+E:\SourcesTree\IpSwitch\IpSwitch\bin\Debug\IpSwitch.pdb
+E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.Properties.Resources.resources
+E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.csproj.GenerateResource.Cache
 E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.exe
 E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.pdb
+E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.UIForm.ListForm.resources
+E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.UIForm.Manage.resources

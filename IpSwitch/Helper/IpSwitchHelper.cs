@@ -12,6 +12,8 @@ namespace Helper
     public class IpEntity
     {
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
+
+        public string Name { get; set; } = Guid.NewGuid().ToString("N");
         /// <summary>
         /// ip
         /// </summary>
@@ -34,31 +36,97 @@ namespace Helper
         /// <summary>
         /// DNS
         /// </summary>
-        public string DNS { get; set; } //= "114.114.114.114";
+        public string DNS { get; set; } = "114.114.114.114";
 
-        public string SpareDNS { get; set; } //= "8.8.8.8";
+        public string SpareDNS { get; set; } = "8.8.8.8";
 
     }
 
+    /// <summary>
+    /// 配置
+    /// </summary>
     public class XmlConfig
     {
-        public IEnumerable< IpEntity> Items { get; set; }
+        public List<IpEntity> Items { get; set; }
 
     }
 
     public static class IpSwitchHelper
     {
         private  const string fileName = @"Config.ipswitch";
-        public static void SvaeConfig(XmlConfig items)
+
+        /// <summary>
+        /// 保存实体
+        /// </summary>
+        /// <param name="xmlConfig"></param>
+        /// <returns></returns>
+        public static string SaveConfig(XmlConfig xmlConfig)
         {
-
+            var msg = "Ok";
+            var xml = string.Empty;
+            try
+            {
+                xml = XmlHelper.Serializer(xmlConfig);
+                File.WriteAllText(fileName, xml, Encoding.UTF8);
+            }
+            catch (Exception e)
+            {
+                msg=e.Message;
+            }
+            return msg;
         }
-        public static void AddConfig(IpEntity model)
+
+        public static string UpdateConfig(IpEntity model)
         {
-
+            bool isPass = true;
+            var msg = CheckIpEntity(model, ref isPass);
+            if (!isPass) { return msg; }
+            XmlConfig xmlConfig = LoadItems();
+            var index = xmlConfig.Items.FindIndex(a => a.Id.Equals(model.Id));
+            if (index < 0 || index > xmlConfig.Items.Count)
+            {
+                return "更新失败";
+            }
+            xmlConfig.Items[index] = model;
+            return SaveConfig(xmlConfig);
         }
 
+        public static string DeleteConfig(IpEntity model)
+        {
+            XmlConfig xmlConfig = LoadItems();
+            xmlConfig.Items.RemoveAll(a=>a.Id.Equals(model.Id));
+            return SaveConfig(xmlConfig);
+        }
+
+        /// <summary>
+        /// 添加一个实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static string AddConfig(IpEntity model)
+        {
+            bool isPass = true;
+            var msg= CheckIpEntity(model, ref isPass);
+            if (!isPass) { return msg; }
+            XmlConfig xmlConfig = LoadItems();
+            xmlConfig.Items.Add(model);
+            return SaveConfig(xmlConfig);
+        }
+
+
+        public static IpEntity FindById(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return default(IpEntity);
+            }
+            return LoadItems().Items.Where(a => a.Id.Equals(id)).FirstOrDefault();
+        }
         
+        /// <summary>
+        /// 从文件载入配置
+        /// </summary>
+        /// <returns></returns>
         public static XmlConfig LoadItems()
         {
             string xml = string.Empty;
@@ -72,22 +140,19 @@ namespace Helper
             XmlConfig res = null;
             if (string.IsNullOrEmpty(xml))
             {
-                res= new XmlConfig {Items=new List<IpEntity>() };
+                return new XmlConfig { Items = new List<IpEntity> () };
             }
-            else
+            try
             {
-                try
+                res = XmlHelper.Deserialize<XmlConfig>(xml);
+            }
+            catch (Exception)
+            {
+                if (File.Exists(fileName))
                 {
-                    res= XmlHelper.Deserialize<XmlConfig>(xml);
+                    File.Delete(fileName);
                 }
-                catch (Exception e)
-                {
-                    if (File.Exists(fileName))
-                    {
-                        File.Delete(fileName);
-                    }
-                    res = new XmlConfig { Items = new List<IpEntity>() };
-                }
+                res =  new XmlConfig { Items = new List<IpEntity>() };
             }
             return res;
         }
@@ -115,7 +180,7 @@ namespace Helper
         /// <returns></returns>
         public static string[] GetIps(string ip, string spareIp)
         {
-            if (string.IsNullOrEmpty(ip)) return null;
+            if (string.IsNullOrEmpty(ip)) { return null; }
             if (string.IsNullOrEmpty(spareIp)) { return new string[] { ip }; }
             return new string[] { ip, spareIp };
         }
@@ -156,6 +221,11 @@ namespace Helper
         {
             isPass = true;
             var res = string.Empty;
+            if(string.IsNullOrEmpty(model.Name))
+            {
+                isPass = false;
+                return "方案名称不能为空！";
+            }
             var msg = "IP地址";
             if ((!string.IsNullOrEmpty( model.IpAddress))&&!CheckIps(model.IpAddress, model.SpareIpAddress, ref msg))
             {
@@ -213,11 +283,6 @@ namespace Helper
             foreach (ManagementObject mo in moc)
             {
                 if (!(bool)mo["IPEnabled"]) { continue; }
-                foreach(PropertyData pd in mo.Properties)
-                {
-                    var ob = mo.GetPropertyValue(pd.Name);
-                    res += (Environment.NewLine + pd.Name + ":" + mo.GetPropertyValue(pd.Name));
-                }
                 try
                 {
                     string[] ips=null;
@@ -256,7 +321,7 @@ namespace Helper
                 }
                 catch (Exception e)
                 {
-                    res = e.Message;
+                    res += e.Message;
                     break;
                 }
                 break;
