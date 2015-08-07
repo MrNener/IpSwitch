@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manage));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.itemListBox = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.idMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nameMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,12 +43,9 @@
             this.subnetMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.dnsMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.gateMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.nameMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.addButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.delButton = new System.Windows.Forms.Button();
-            this.idMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +95,36 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "信息";
+            // 
+            // idMaskedTextBox
+            // 
+            this.idMaskedTextBox.Location = new System.Drawing.Point(90, 263);
+            this.idMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.idMaskedTextBox.Name = "idMaskedTextBox";
+            this.idMaskedTextBox.PromptChar = ' ';
+            this.idMaskedTextBox.Size = new System.Drawing.Size(149, 23);
+            this.idMaskedTextBox.TabIndex = 13;
+            this.idMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.idMaskedTextBox.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(10, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 24);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "名称：";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // nameMaskedTextBox
+            // 
+            this.nameMaskedTextBox.Location = new System.Drawing.Point(90, 28);
+            this.nameMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.nameMaskedTextBox.Name = "nameMaskedTextBox";
+            this.nameMaskedTextBox.PromptChar = ' ';
+            this.nameMaskedTextBox.Size = new System.Drawing.Size(149, 23);
+            this.nameMaskedTextBox.TabIndex = 11;
+            this.nameMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -171,25 +202,6 @@
             this.gateMaskedTextBox.TabIndex = 5;
             this.gateMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(10, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 24);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "名称：";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // nameMaskedTextBox
-            // 
-            this.nameMaskedTextBox.Location = new System.Drawing.Point(90, 28);
-            this.nameMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.nameMaskedTextBox.Name = "nameMaskedTextBox";
-            this.nameMaskedTextBox.PromptChar = ' ';
-            this.nameMaskedTextBox.Size = new System.Drawing.Size(149, 23);
-            this.nameMaskedTextBox.TabIndex = 11;
-            this.nameMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // addButton
             // 
             this.addButton.BackColor = System.Drawing.SystemColors.Highlight;
@@ -226,17 +238,6 @@
             this.delButton.UseVisualStyleBackColor = false;
             this.delButton.Click += new System.EventHandler(this.delButton_Click);
             // 
-            // idMaskedTextBox
-            // 
-            this.idMaskedTextBox.Location = new System.Drawing.Point(90, 263);
-            this.idMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.idMaskedTextBox.Name = "idMaskedTextBox";
-            this.idMaskedTextBox.PromptChar = ' ';
-            this.idMaskedTextBox.Size = new System.Drawing.Size(149, 23);
-            this.idMaskedTextBox.TabIndex = 13;
-            this.idMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.idMaskedTextBox.Visible = false;
-            // 
             // Manage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -249,6 +250,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(470, 404);

@@ -16,3 +16,4 @@ E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.exe
 E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.pdb
 E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.UIForm.ListForm.resources
 E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.UIForm.Manage.resources
+E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.csprojResolveAssemblyReference.cache
