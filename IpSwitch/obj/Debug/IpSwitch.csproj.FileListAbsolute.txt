@@ -1,0 +1,12 @@
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\bin\Debug\IpSwitch.exe.config
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\bin\Debug\IpSwitch.exe
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\bin\Debug\IpSwitch.pdb
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.Form1.resources
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.Properties.Resources.resources
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.csproj.GenerateResource.Cache
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.exe
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.pdb
+d:\documents\visual studio 2015\Projects\IpSwitch\IpSwitch\obj\Debug\IpSwitch.csprojResolveAssemblyReference.cache
+E:\SourcesTree\IpSwitch\IpSwitch\bin\Debug\IpSwitch.exe.config
+E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.exe
+E:\SourcesTree\IpSwitch\IpSwitch\obj\Debug\IpSwitch.pdb
