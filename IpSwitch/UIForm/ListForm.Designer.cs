@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListForm));
             this.itemsComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ipMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.subnetMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -38,9 +41,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.formNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +75,19 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设置";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button2.ForeColor = System.Drawing.SystemColors.Window;
+            this.button2.Location = new System.Drawing.Point(18, 157);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(176, 42);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "管理";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -167,18 +183,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "信息";
             // 
-            // button2
+            // label4
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button2.ForeColor = System.Drawing.SystemColors.Window;
-            this.button2.Location = new System.Drawing.Point(18, 157);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(176, 42);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "管理";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label4.Location = new System.Drawing.Point(9, 181);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "DNS：";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -189,14 +201,14 @@
             this.label3.Text = "默认网关：";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
+            // formNotifyIcon
             // 
-            this.label4.Location = new System.Drawing.Point(9, 181);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 17);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "DNS：";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.formNotifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.formNotifyIcon.BalloonTipText = "IpSwitch";
+            this.formNotifyIcon.BalloonTipTitle = "IpSwitch";
+            this.formNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("formNotifyIcon.Icon")));
+            this.formNotifyIcon.Text = "IpSwitch";
+            this.formNotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.formNotifyIcon_MouseClick);
             // 
             // ListForm
             // 
@@ -213,10 +225,11 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(499, 280);
             this.Name = "ListForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IpSwitch";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListForm_FormClosing);
             this.Load += new System.EventHandler(this.ListForm_Load);
+            this.SizeChanged += new System.EventHandler(this.ListForm_SizeChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -239,5 +252,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NotifyIcon formNotifyIcon;
     }
 }

@@ -79,10 +79,10 @@ namespace IpSwitch.UIForm
             res= IpSwitchHelper.CheckIpEntity(model, ref isPass);
             if (!isPass)
             {
-                MessageBox.Show(res);
+                MessageBox.Show(res, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (model.Id.Equals(tempId))
+            if (model.Id.Equals(tempId)||string.IsNullOrEmpty(model.Id))
             {
                 model.Id = Guid.NewGuid().ToString("N");
                 res = IpSwitchHelper.AddConfig(model);
@@ -93,16 +93,16 @@ namespace IpSwitch.UIForm
             }
             LoadConfig();
             itemListBox.SelectedIndex = se >= 0 ? se : 0;
-            MessageBox.Show(res);
+            MessageBox.Show(res, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             var model = IpSwitchHelper.CreateDefault();
             nameMaskedTextBox.Text = "新方案"+itemListBox.Items.Count;
-            ipMaskedTextBox.Text = "";
-            subnetMaskedTextBox.Text = "";
-            gateMaskedTextBox.Text = "";
+            ipMaskedTextBox.Text = model.IpAddress;
+            subnetMaskedTextBox.Text = model.SubnetMask;
+            gateMaskedTextBox.Text = model.SubnetMask;
             dnsMaskedTextBox.Text = model.DNS;
             idMaskedTextBox.Text = tempId;
             itemListBox.SelectedIndex = -1;
@@ -116,7 +116,7 @@ namespace IpSwitch.UIForm
             var msg = IpSwitchHelper.DeleteConfig(new IpEntity { Id = id });
             LoadConfig();
             itemListBox.SelectedIndex = se >= 0 ?(se>=itemListBox.Items.Count?se-1:se) : 0;
-            MessageBox.Show(msg);
+            MessageBox.Show(msg, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

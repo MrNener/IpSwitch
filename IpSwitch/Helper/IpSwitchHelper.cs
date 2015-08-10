@@ -159,11 +159,28 @@ namespace Helper
 
         public static IpEntity CreateDefault()
         {
-            return new IpEntity
+            var model= new IpEntity
             {   
                 DNS="114.114.114.114",
                 SpareDNS="8.8.8.8",
             };
+            ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+            ManagementObjectCollection moc = mc.GetInstances();
+            foreach (ManagementObject mo in moc)
+            {
+                if (!(bool)mo["IPEnabled"]) { continue; }
+                string[] ips =(string[]) mo["DefaultIPGateway"];
+                model.Gateway = ips.Length > 0 ? ips[0] : "";
+                ips = (string[])mo["DNSServerSearchOrder"];
+                model.DNS = ips.Length > 0 ? ips[0] : model.DNS;
+                ips = (string[])mo["IPAddress"];
+                model.IpAddress= ips.Length > 0 ? ips[0] :"";
+                ips = (string[])mo["IPSubnet"];
+                model.SubnetMask = ips.Length > 0 ? ips[0] : "";
+                break;
+            }
+            return model;
+
         }
 
         public static bool IsIpAddress(string ip)
@@ -317,7 +334,7 @@ namespace Helper
                         outPar = mo.InvokeMethod("SetDNSServerSearchOrder", inPar, null);
                         res += GetInvokeMethodMsg(outPar.GetPropertyValue("ReturnValue"), "DNS");
                     }
-                    res +=(Environment.NewLine+ "ok");
+                    res=string.IsNullOrEmpty(res)?"OK!":res+ (Environment.NewLine + "Ok!");
                 }
                 catch (Exception e)
                 {
