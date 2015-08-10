@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Helper;
 
@@ -13,6 +8,11 @@ namespace IpSwitch.UIForm
 {
     public partial class ListForm : Form
     {
+        private static string version = "v1.0.2";
+
+
+
+
         public ListForm()
         {
             InitializeComponent();
@@ -23,13 +23,12 @@ namespace IpSwitch.UIForm
 
             LoadConfig();
             LoadItem(itemsComboBox.SelectedValue?.ToString());
+            GetNowStatus(IpSwitchHelper.LoadItems());
         }
 
-        public void LoadConfig(object sender, EventArgs e)
-        {
-            LoadConfig();
-        }
-
+        /// <summary>
+        /// 装载配置
+        /// </summary>
         public void LoadConfig()
         {
             ipMaskedTextBox.Text = "";
@@ -47,20 +46,67 @@ namespace IpSwitch.UIForm
 
             formNotifyIcon.ContextMenuStrip = null;
             ContextMenuStrip menu = new ContextMenuStrip();
+            menu.Items.Add("当前：...");
+            menu.Items.Add(new ToolStripSeparator());
+            int c = 0;
             foreach (var item in ls.Items)
             {
+                if (c >= 5)
+                {
+                    menu.Items.Add("更多...", null, (object s, EventArgs ea) =>
+                    {
+                        WindowState = FormWindowState.Normal;
+                    });
+                    break;
+                }
                 menu.Items.Add(item.Name, null, (object s, EventArgs ea) =>
                 {
-                  MessageBox.Show(  IpSwitchHelper.SetNetworkAdapter(IpSwitchHelper.FindById(item.Id)),"IpSwitch",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    var model = IpSwitchHelper.FindById(item.Id);
+                    var isOk = true;
+                    MessageBox.Show(IpSwitchHelper.SetNetworkAdapter(model,ref isOk), "IpSwitch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (isOk)
+                    {
+                        GetNowStatus(null, model);
+                    }
                 });
             }
             menu.Items.Add(new ToolStripSeparator());
-            menu.Items.Add("关于", null, (object s, EventArgs ea) => { MessageBox.Show(":-)", ":-)", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); });
-            menu.Items.Add("退出", null, (object s, EventArgs ea) => { Application.Exit(); });
+            menu.Items.Add("关于", null, (object s, EventArgs ea) => { MessageBox.Show(":-)"+Environment.NewLine+ version, ":-)", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); });
+            menu.Items.Add("退出", null, (object s, EventArgs ea) => { Close(); Dispose(); Application.Exit(); });
             formNotifyIcon.ContextMenuStrip = menu;
-
         }
 
+        /// <summary>
+        /// 获取当前配置项
+        /// </summary>
+        /// <param name="ls"></param>
+        /// <param name="addModel"></param>
+        private void GetNowStatus(XmlConfig ls,IpEntity addModel=null)
+        {
+            var status = string.Empty;
+            var defaultModel = IpSwitchHelper.CreateDefault();
+            var nowModel = addModel!=null&&!addModel.Equals(default(IpEntity))? addModel: ls.Items.Where(a => a.IpAddress.Equals(defaultModel.IpAddress) && a.DNS.Equals(defaultModel.DNS) && a.SubnetMask.Equals(defaultModel.SubnetMask) && a.Gateway.Equals(defaultModel.Gateway)).FirstOrDefault();
+            if (!nowModel.Equals(default(IpEntity)))
+            {
+                status = nowModel.Name;
+                for (int i = 0; i < itemsComboBox.Items.Count; i++)
+                {
+                    var ipEntity = (IpEntity)itemsComboBox.Items[i];
+                    if (ipEntity.Id.Equals(nowModel.Id))
+                    {
+                        itemsComboBox.SelectedIndex = i;
+                    }
+                }
+                formNotifyIcon.ContextMenuStrip.Items.RemoveAt(0);
+                formNotifyIcon.ContextMenuStrip.Items.Insert(0,new ToolStripMenuItem("当前："+status));
+            }
+            statusLabel.Text = status;
+        }
+
+        /// <summary>
+        /// 单个item 显示到界面上
+        /// </summary>
+        /// <param name="id"></param>
         public void LoadItem(string id)
         {
             var model = IpSwitchHelper.LoadItems().Items.Where(a => a.Id.Equals(id)).FirstOrDefault();
@@ -80,7 +126,12 @@ namespace IpSwitch.UIForm
             var id = itemsComboBox.SelectedValue?.ToString();
             var model = IpSwitchHelper.FindById(id);
             if (model == default(IpEntity)) { return; }
-            MessageBox.Show(IpSwitchHelper.SetNetworkAdapter(model), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var isOk = true;
+            MessageBox.Show(IpSwitchHelper.SetNetworkAdapter(model,ref isOk), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (isOk)
+            {
+                GetNowStatus(null, model);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -88,6 +139,7 @@ namespace IpSwitch.UIForm
             var formmodel = new Manage();
             formmodel.ShowDialog();
             LoadConfig();
+            GetNowStatus(IpSwitchHelper.LoadItems());
         }
 
         private void ListForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -100,15 +152,11 @@ namespace IpSwitch.UIForm
         {
             if (WindowState == FormWindowState.Minimized)
             {
-                //托盘显示图标等于托盘图标对象 
-                //注意notifyIcon1是控件的名字而不是对象的名字 
-                //隐藏任务栏区图标 
-                this.ShowInTaskbar = false;
-                //图标显示在托盘区 
+                ShowInTaskbar = false;
                 formNotifyIcon.Visible = true;
                 return;
             }
-            this.ShowInTaskbar = true;
+            ShowInTaskbar = true;
             formNotifyIcon.Visible = false;
 
         }
@@ -120,6 +168,11 @@ namespace IpSwitch.UIForm
                 WindowState = FormWindowState.Normal;
 
             }
+        }
+
+        private void ListForm_Shown(object sender, EventArgs e)
+        {
+            //GetNowStatus(IpSwitchHelper.LoadItems());
         }
     }
 }

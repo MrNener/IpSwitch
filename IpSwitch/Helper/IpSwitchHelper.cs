@@ -270,27 +270,31 @@ namespace Helper
             return string.Empty;
         }
 
-        public static string GetInvokeMethodMsg(object thisResult, string pre)
+        public static string GetInvokeMethodMsg(object thisResult, string pre,ref bool isOk)
         {
             int re = -1;
             if (int.TryParse(thisResult.ToString(), out re))
             {
                 if (re != 1 && re != 0)
                 {
+                    isOk = false;
                     return string.Format("修改{0}失败，错误代码：{1}!", pre,re);
                 }
                 return "";
             }
+            isOk = false;
             return string.Format("修改{0}失败，错误代码：{1}!", pre, thisResult.ToString());
         }
 
-        public static string SetNetworkAdapter(IpEntity model)
+        public static string SetNetworkAdapter(IpEntity model,ref bool isOk)
         {
             var res = string.Empty;
             var isPass = true;
+            isOk = true;
             res = CheckIpEntity(model, ref isPass);
             if (!isPass)
             {
+                isOk = false;
                 return res;
             }
             ManagementBaseObject inPar = null;
@@ -312,7 +316,7 @@ namespace Helper
                         var subnet = GetIps(model.SubnetMask, model.SpareSubnetMask);
                         inPar.SetPropertyValue("SubnetMask", subnet); // 1.备用 2.IP
                         outPar = mo.InvokeMethod("EnableStatic", inPar, null);
-                        res = GetInvokeMethodMsg(outPar.GetPropertyValue("ReturnValue"),"IP或子网掩码");
+                        res = GetInvokeMethodMsg(outPar.GetPropertyValue("ReturnValue"),"IP或子网掩码",ref isOk);
                     }
 
                     //设置网关地址 
@@ -322,7 +326,7 @@ namespace Helper
                         inPar = mo.GetMethodParameters("SetGateways");
                         inPar["DefaultIPGateway"] = ips;// 1.网关;2.备用网关 
                         outPar = mo.InvokeMethod("SetGateways", inPar, null);
-                        res += GetInvokeMethodMsg(outPar.GetPropertyValue("ReturnValue"), "网关");
+                        res += GetInvokeMethodMsg(outPar.GetPropertyValue("ReturnValue"), "网关", ref isOk);
                     }
 
                     //设置DNS 
@@ -332,13 +336,14 @@ namespace Helper
                         inPar = mo.GetMethodParameters("SetDNSServerSearchOrder");
                         inPar["DNSServerSearchOrder"] = ips; // 1.DNS 2.备用DNS 
                         outPar = mo.InvokeMethod("SetDNSServerSearchOrder", inPar, null);
-                        res += GetInvokeMethodMsg(outPar.GetPropertyValue("ReturnValue"), "DNS");
+                        res += GetInvokeMethodMsg(outPar.GetPropertyValue("ReturnValue"), "DNS", ref isOk);
                     }
                     res=string.IsNullOrEmpty(res)?"OK!":res+ (Environment.NewLine + "Ok!");
                 }
                 catch (Exception e)
                 {
                     res += e.Message;
+                    isOk = false;
                     break;
                 }
                 break;

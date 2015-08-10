@@ -44,6 +44,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.formNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -210,12 +212,32 @@
             this.formNotifyIcon.Text = "IpSwitch";
             this.formNotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.formNotifyIcon_MouseClick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 225);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "状态：";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(57, 225);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(17, 17);
+            this.statusLabel.TabIndex = 11;
+            this.statusLabel.Text = "...";
+            // 
             // ListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(483, 241);
+            this.Controls.Add(this.statusLabel);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -229,11 +251,13 @@
             this.Text = "IpSwitch";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListForm_FormClosing);
             this.Load += new System.EventHandler(this.ListForm_Load);
+            this.Shown += new System.EventHandler(this.ListForm_Shown);
             this.SizeChanged += new System.EventHandler(this.ListForm_SizeChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -253,5 +277,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NotifyIcon formNotifyIcon;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label statusLabel;
     }
 }
