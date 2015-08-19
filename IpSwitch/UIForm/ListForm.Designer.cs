@@ -210,6 +210,7 @@
             this.formNotifyIcon.BalloonTipTitle = "IpSwitch";
             this.formNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("formNotifyIcon.Icon")));
             this.formNotifyIcon.Text = "IpSwitch";
+            this.formNotifyIcon.Visible = true;
             this.formNotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.formNotifyIcon_MouseClick);
             // 
             // label5

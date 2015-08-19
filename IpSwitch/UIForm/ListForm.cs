@@ -20,6 +20,7 @@ namespace IpSwitch.UIForm
 
         private void ListForm_Load(object sender, EventArgs e)
         {
+            formNotifyIcon.Visible = true;
 
             LoadConfig();
             LoadItem(itemsComboBox.SelectedValue?.ToString());
@@ -150,14 +151,13 @@ namespace IpSwitch.UIForm
 
         private void ListForm_SizeChanged(object sender, EventArgs e)
         {
+            formNotifyIcon.Visible = true;
             if (WindowState == FormWindowState.Minimized)
             {
                 ShowInTaskbar = false;
-                formNotifyIcon.Visible = true;
                 return;
             }
             ShowInTaskbar = true;
-            formNotifyIcon.Visible = false;
 
         }
 
@@ -166,7 +166,6 @@ namespace IpSwitch.UIForm
             if (e.Button == MouseButtons.Left)
             {
                 WindowState = FormWindowState.Normal;
-
             }
         }
 
