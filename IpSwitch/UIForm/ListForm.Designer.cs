@@ -81,6 +81,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.ForeColor = System.Drawing.SystemColors.Window;
             this.button2.Location = new System.Drawing.Point(18, 157);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -94,6 +95,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.ForeColor = System.Drawing.SystemColors.Window;
             this.button1.Location = new System.Drawing.Point(19, 85);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -236,7 +238,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(483, 241);
+            this.ClientSize = new System.Drawing.Size(483, 245);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
@@ -245,9 +247,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(499, 280);
+            this.MaximumSize = new System.Drawing.Size(499, 284);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(499, 280);
+            this.MinimumSize = new System.Drawing.Size(499, 284);
             this.Name = "ListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IpSwitch";

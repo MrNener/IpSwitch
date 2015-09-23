@@ -21,7 +21,6 @@ namespace IpSwitch.UIForm
         private void ListForm_Load(object sender, EventArgs e)
         {
             formNotifyIcon.Visible = true;
-
             LoadConfig();
             LoadItem(itemsComboBox.SelectedValue?.ToString());
             GetNowStatus(IpSwitchHelper.LoadItems());

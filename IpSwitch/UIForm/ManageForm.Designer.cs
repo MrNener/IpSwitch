@@ -64,6 +64,7 @@
             // 
             // itemListBox
             // 
+            this.itemListBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.itemListBox.FormattingEnabled = true;
             this.itemListBox.HorizontalScrollbar = true;
             this.itemListBox.ItemHeight = 17;
@@ -205,6 +206,7 @@
             // addButton
             // 
             this.addButton.BackColor = System.Drawing.SystemColors.Highlight;
+            this.addButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addButton.ForeColor = System.Drawing.SystemColors.Window;
             this.addButton.Location = new System.Drawing.Point(10, 314);
             this.addButton.Name = "addButton";
@@ -217,6 +219,7 @@
             // saveButton
             // 
             this.saveButton.BackColor = System.Drawing.SystemColors.Highlight;
+            this.saveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveButton.ForeColor = System.Drawing.SystemColors.Window;
             this.saveButton.Location = new System.Drawing.Point(171, 314);
             this.saveButton.Name = "saveButton";
@@ -229,6 +232,7 @@
             // delButton
             // 
             this.delButton.BackColor = System.Drawing.SystemColors.Highlight;
+            this.delButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.delButton.ForeColor = System.Drawing.SystemColors.Window;
             this.delButton.Location = new System.Drawing.Point(332, 314);
             this.delButton.Name = "delButton";
@@ -259,7 +263,7 @@
             this.Name = "Manage";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ManageForm";
+            this.Text = "ManageList";
             this.Load += new System.EventHandler(this.Manage_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

@@ -102,7 +102,7 @@ namespace IpSwitch.UIForm
             nameMaskedTextBox.Text = "新方案"+itemListBox.Items.Count;
             ipMaskedTextBox.Text = model.IpAddress;
             subnetMaskedTextBox.Text = model.SubnetMask;
-            gateMaskedTextBox.Text = model.SubnetMask;
+            gateMaskedTextBox.Text = model.Gateway;
             dnsMaskedTextBox.Text = model.DNS;
             idMaskedTextBox.Text = tempId;
             itemListBox.SelectedIndex = -1;
