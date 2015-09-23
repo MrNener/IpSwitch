@@ -8,7 +8,7 @@ namespace IpSwitch.UIForm
 {
     public partial class ListForm : Form
     {
-        private static string version = "v1.0.2";
+        private static string version = "v1.0.3";
 
 
 
