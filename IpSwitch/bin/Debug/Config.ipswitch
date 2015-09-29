@@ -4,9 +4,9 @@
     <IpEntity>
       <Id>8642b5b131bd423080f434528ca1b01f</Id>
       <Name>联通什么鬼</Name>
-      <IpAddress>192.168.11.231</IpAddress>
+      <IpAddress>192.168.12.231</IpAddress>
       <SubnetMask>255.255.255.0</SubnetMask>
-      <Gateway>192.168.11.1</Gateway>
+      <Gateway>192.168.12.1</Gateway>
       <DNS>114.114.114.114</DNS>
       <SpareDNS>8.8.8.8</SpareDNS>
     </IpEntity>

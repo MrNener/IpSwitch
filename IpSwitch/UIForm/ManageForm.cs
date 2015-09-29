@@ -99,7 +99,7 @@ namespace IpSwitch.UIForm
         private void addButton_Click(object sender, EventArgs e)
         {
             var model = IpSwitchHelper.CreateDefault();
-            nameMaskedTextBox.Text = "新方案"+itemListBox.Items.Count;
+            nameMaskedTextBox.Text = "新方案"+(itemListBox.Items.Count+1);
             ipMaskedTextBox.Text = model.IpAddress;
             subnetMaskedTextBox.Text = model.SubnetMask;
             gateMaskedTextBox.Text = model.Gateway;

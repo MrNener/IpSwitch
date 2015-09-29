@@ -8,7 +8,7 @@ namespace IpSwitch.UIForm
 {
     public partial class ListForm : Form
     {
-        private static string version = "v1.0.3";
+        private static string version = "v1.0.4";
 
 
 
@@ -85,8 +85,8 @@ namespace IpSwitch.UIForm
         {
             var status = string.Empty;
             var defaultModel = IpSwitchHelper.CreateDefault();
-            var nowModel = addModel!=null&&!addModel.Equals(default(IpEntity))? addModel: ls.Items.Where(a => a.IpAddress.Equals(defaultModel.IpAddress) && a.DNS.Equals(defaultModel.DNS) && a.SubnetMask.Equals(defaultModel.SubnetMask) && a.Gateway.Equals(defaultModel.Gateway)).FirstOrDefault();
-            if (!nowModel.Equals(default(IpEntity)))
+            var nowModel = addModel!=null&&addModel!=default(IpEntity)? addModel: ls.Items.Where(a => a.IpAddress.Equals(defaultModel.IpAddress) && a.DNS.Equals(defaultModel.DNS) && a.SubnetMask.Equals(defaultModel.SubnetMask) && a.Gateway.Equals(defaultModel.Gateway)).FirstOrDefault();
+            if (nowModel!=default(IpEntity))
             {
                 status = nowModel.Name;
                 for (int i = 0; i < itemsComboBox.Items.Count; i++)
