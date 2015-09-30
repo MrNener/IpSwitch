@@ -3,13 +3,16 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using Helper;
+using Microsoft.Win32;
+using IpSwitch.Properties;
 
 namespace IpSwitch.UIForm
 {
     public partial class ListForm : Form
     {
-        private static string version = "v1.0.4";
+        private static string version = "v1.0.5";
 
+        private static bool isAuto = false;
 
 
 
@@ -20,6 +23,9 @@ namespace IpSwitch.UIForm
 
         private void ListForm_Load(object sender, EventArgs e)
         {
+            Settings set = new Settings();
+            isAuto = set.isAutoStart;
+            autoStartCB.Checked = set.isAutoStart;
             formNotifyIcon.Visible = true;
             LoadConfig();
             LoadItem(itemsComboBox.SelectedValue?.ToString());
@@ -171,6 +177,38 @@ namespace IpSwitch.UIForm
         private void ListForm_Shown(object sender, EventArgs e)
         {
             //GetNowStatus(IpSwitchHelper.LoadItems());
+        }
+
+        private void autoStartCB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoStartCB.Checked) //设置开机自启动 
+            {
+                if (isAuto) { return; }
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                rk2.SetValue("IpSwitch", path);
+                rk2.Close();
+                rk.Close();
+                isAuto = true;
+                Settings set = new Settings();
+                set.isAutoStart = true;
+                set.Save();
+            }
+            else //取消开机自启动 
+            {
+                isAuto = false;
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                rk2.DeleteValue("IpSwitch", false);
+                rk2.Close();
+                rk.Close();
+                Settings set = new Settings();
+                set.isAutoStart = false;
+                set.Save();
+            }
+
         }
     }
 }

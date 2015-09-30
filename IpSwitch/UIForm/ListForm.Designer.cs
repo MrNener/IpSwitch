@@ -46,6 +46,7 @@
             this.formNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.autoStartCB = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -233,12 +234,24 @@
             this.statusLabel.TabIndex = 11;
             this.statusLabel.Text = "...";
             // 
+            // autoStartCB
+            // 
+            this.autoStartCB.AutoSize = true;
+            this.autoStartCB.Location = new System.Drawing.Point(271, 225);
+            this.autoStartCB.Name = "autoStartCB";
+            this.autoStartCB.Size = new System.Drawing.Size(75, 21);
+            this.autoStartCB.TabIndex = 12;
+            this.autoStartCB.Text = "开机自启";
+            this.autoStartCB.UseVisualStyleBackColor = true;
+            this.autoStartCB.CheckedChanged += new System.EventHandler(this.autoStartCB_CheckedChanged);
+            // 
             // ListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(483, 245);
+            this.Controls.Add(this.autoStartCB);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
@@ -283,5 +296,6 @@
         private System.Windows.Forms.NotifyIcon formNotifyIcon;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.CheckBox autoStartCB;
     }
 }

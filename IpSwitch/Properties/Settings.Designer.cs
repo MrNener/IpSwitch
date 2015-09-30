@@ -22,5 +22,17 @@ namespace IpSwitch.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isAutoStart {
+            get {
+                return ((bool)(this["isAutoStart"]));
+            }
+            set {
+                this["isAutoStart"] = value;
+            }
+        }
     }
 }
