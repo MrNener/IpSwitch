@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -14,6 +15,21 @@ namespace Helper
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
 
         public string Name { get; set; } = Guid.NewGuid().ToString("N");
+
+        /// <summary>
+        ///网卡名称 
+        /// </summary>
+        public string NetworkName { get; set; }
+
+        /// <summary>
+        /// mac 地址
+        /// </summary>
+        public string MACAddress { get; set; }
+
+        /// <summary>
+        /// 网卡id
+        /// </summary>
+        public string NetworkID { get; set; }
         /// <summary>
         /// ip
         /// </summary>
@@ -157,18 +173,25 @@ namespace Helper
             return res;
         }
 
-        public static IpEntity CreateDefault()
+        public static IpEntity CreateDefault( string networkId)
         {
             var model= new IpEntity
             {   
                 DNS="114.114.114.114",
                 SpareDNS="8.8.8.8",
+                NetworkID= networkId
             };
-            ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
-            ManagementObjectCollection moc = mc.GetInstances();
+           // ManagementClass mc =new ManagementClass("Win32_NetworkAdapterConfiguration");
+            ManagementObjectCollection moc = new ManagementObjectSearcher("select * from  Win32_NetworkAdapterConfiguration where MACAddress is not null").Get();
             foreach (ManagementObject mo in moc)
             {
-                if (!(bool)mo["IPEnabled"]) { continue; }
+                if (!(string.IsNullOrEmpty(model.NetworkID)) && (string)mo["SettingID"] != model.NetworkID)
+                {
+                    continue;
+                }
+                if (string.IsNullOrEmpty(model.NetworkID)&& (!(bool)mo["IPEnabled"])){
+                    continue;
+                }
                 string[] ips =(string[]) mo["DefaultIPGateway"];
                 model.Gateway = ips.Length > 0 ? ips[0] : "";
                 ips = (string[])mo["DNSServerSearchOrder"];
@@ -180,7 +203,6 @@ namespace Helper
                 break;
             }
             return model;
-
         }
 
         public static bool IsIpAddress(string ip)
@@ -297,13 +319,28 @@ namespace Helper
                 isOk = false;
                 return res;
             }
+      
             ManagementBaseObject inPar = null;
             ManagementBaseObject outPar = null;
-            ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
-            ManagementObjectCollection moc = mc.GetInstances();
+            ManagementObjectCollection moc =new ManagementObjectSearcher("Select  * from Win32_NetworkAdapterConfiguration where MACAddress is not null and SettingID='"+model.NetworkID+"'").Get();
+            if (string.IsNullOrEmpty(model.NetworkID)&& moc.Count<=0)
+            {
+                isOk = false;
+                return "找不到指定网卡";
+            }
             foreach (ManagementObject mo in moc)
             {
-                if (!(bool)mo["IPEnabled"]) { continue; }
+                if((string)mo["SettingID"]!= model.NetworkID)
+                {
+                    isOk = false;
+                    res+="找不到指定网卡";
+                    continue;
+                }
+                //启用网卡
+                if ((!(bool)mo["IPEnabled"])&&(!IpSwitch.Helper.NetworkHelper.EnableNetWork(mo))) {
+                    isOk = false;
+                    return "网卡启用失败";
+                }
                 try
                 {
                     string[] ips=null;
@@ -344,7 +381,6 @@ namespace Helper
                 {
                     res += e.Message;
                     isOk = false;
-                    break;
                 }
                 break;
             }

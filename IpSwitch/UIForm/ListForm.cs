@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Helper;
 using Microsoft.Win32;
 using IpSwitch.Properties;
+using IpSwitch.Helper;
 
 namespace IpSwitch.UIForm
 {
@@ -90,7 +91,7 @@ namespace IpSwitch.UIForm
         private void GetNowStatus(XmlConfig ls,IpEntity addModel=null)
         {
             var status = string.Empty;
-            var defaultModel = IpSwitchHelper.CreateDefault();
+            var defaultModel = IpSwitchHelper.CreateDefault(null);
             var nowModel = addModel!=null&&addModel!=default(IpEntity)? addModel: ls.Items.Where(a => a.IpAddress.Equals(defaultModel.IpAddress) && a.DNS.Equals(defaultModel.DNS) && a.SubnetMask.Equals(defaultModel.SubnetMask) && a.Gateway.Equals(defaultModel.Gateway)).FirstOrDefault();
             if (nowModel!=default(IpEntity))
             {
@@ -121,6 +122,7 @@ namespace IpSwitch.UIForm
             subnetMaskedTextBox.Text = model.SubnetMask;
             gateMaskedTextBox.Text = model.Gateway;
             dnsMaskedTextBox.Text = model.DNS;
+            networkTextBox.Text = model.NetworkName;
         }
         private void itemsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -209,6 +211,16 @@ namespace IpSwitch.UIForm
                 set.Save();
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var ls = NetworkHelper.NetWorkList();
+            foreach (var item in ls)
+            {
+                MessageBox.Show(item.Name);
+
+            }
         }
     }
 }

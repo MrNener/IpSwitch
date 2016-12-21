@@ -2,21 +2,27 @@
 <XmlConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Items>
     <IpEntity>
-      <Id>8642b5b131bd423080f434528ca1b01f</Id>
-      <Name>联通什么鬼</Name>
-      <IpAddress>192.168.12.231</IpAddress>
+      <Id>1b178a08b45e48ebb6da6ccc3b2e7079</Id>
+      <Name>地插</Name>
+      <NetworkName>vEthernet (Switch_Out)</NetworkName>
+      <MACAddress>F079598DF9E0</MACAddress>
+      <NetworkID>{AFCE1771-5325-4A0D-96C6-6FF6E0FCE645}</NetworkID>
+      <IpAddress>192.168.84.121</IpAddress>
       <SubnetMask>255.255.255.0</SubnetMask>
-      <Gateway>192.168.12.1</Gateway>
-      <DNS>114.114.114.114</DNS>
+      <Gateway>192.168.84.1</Gateway>
+      <DNS>221.13.30.242</DNS>
       <SpareDNS>8.8.8.8</SpareDNS>
     </IpEntity>
     <IpEntity>
-      <Id>968a739bbd3e4a8188a9f9bf25689761</Id>
-      <Name>电信滑板鞋</Name>
-      <IpAddress>192.168.12.231</IpAddress>
+      <Id>01d8289131ed471aabd610e50bef9002</Id>
+      <Name>极路由</Name>
+      <NetworkName>vEthernet (Switch_Out)</NetworkName>
+      <MACAddress>F079598DF9E0</MACAddress>
+      <NetworkID>{AFCE1771-5325-4A0D-96C6-6FF6E0FCE645}</NetworkID>
+      <IpAddress>192.168.199.121</IpAddress>
       <SubnetMask>255.255.255.0</SubnetMask>
-      <Gateway>192.168.12.99</Gateway>
-      <DNS>114.114.114.114</DNS>
+      <Gateway>192.168.199.1</Gateway>
+      <DNS>221.13.30.242</DNS>
       <SpareDNS>8.8.8.8</SpareDNS>
     </IpEntity>
   </Items>

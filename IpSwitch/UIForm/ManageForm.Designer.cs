@@ -32,6 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.itemListBox = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.idMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.nameMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -46,6 +47,7 @@
             this.addButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.delButton = new System.Windows.Forms.Button();
+            this.networkComBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +79,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.networkComBox);
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.idMaskedTextBox);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.nameMaskedTextBox);
@@ -97,9 +101,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "信息";
             // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(10, 106);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 24);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "网卡：";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // idMaskedTextBox
             // 
-            this.idMaskedTextBox.Location = new System.Drawing.Point(90, 263);
+            this.idMaskedTextBox.Location = new System.Drawing.Point(90, 262);
             this.idMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.idMaskedTextBox.Name = "idMaskedTextBox";
             this.idMaskedTextBox.PromptChar = ' ';
@@ -129,7 +142,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(10, 228);
+            this.label4.Location = new System.Drawing.Point(10, 223);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 24);
             this.label4.TabIndex = 10;
@@ -138,7 +151,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(10, 178);
+            this.label3.Location = new System.Drawing.Point(10, 184);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 24);
             this.label3.TabIndex = 9;
@@ -147,7 +160,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(10, 78);
+            this.label2.Location = new System.Drawing.Point(10, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 24);
             this.label2.TabIndex = 8;
@@ -156,7 +169,7 @@
             // 
             // ipMaskedTextBox
             // 
-            this.ipMaskedTextBox.Location = new System.Drawing.Point(90, 78);
+            this.ipMaskedTextBox.Location = new System.Drawing.Point(90, 67);
             this.ipMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.ipMaskedTextBox.Name = "ipMaskedTextBox";
             this.ipMaskedTextBox.PromptChar = ' ';
@@ -166,7 +179,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(10, 128);
+            this.label1.Location = new System.Drawing.Point(10, 145);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 24);
             this.label1.TabIndex = 7;
@@ -175,7 +188,7 @@
             // 
             // subnetMaskedTextBox
             // 
-            this.subnetMaskedTextBox.Location = new System.Drawing.Point(90, 128);
+            this.subnetMaskedTextBox.Location = new System.Drawing.Point(90, 145);
             this.subnetMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.subnetMaskedTextBox.Name = "subnetMaskedTextBox";
             this.subnetMaskedTextBox.PromptChar = ' ';
@@ -185,7 +198,7 @@
             // 
             // dnsMaskedTextBox
             // 
-            this.dnsMaskedTextBox.Location = new System.Drawing.Point(90, 228);
+            this.dnsMaskedTextBox.Location = new System.Drawing.Point(90, 223);
             this.dnsMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.dnsMaskedTextBox.Name = "dnsMaskedTextBox";
             this.dnsMaskedTextBox.PromptChar = ' ';
@@ -195,7 +208,7 @@
             // 
             // gateMaskedTextBox
             // 
-            this.gateMaskedTextBox.Location = new System.Drawing.Point(90, 178);
+            this.gateMaskedTextBox.Location = new System.Drawing.Point(90, 184);
             this.gateMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.gateMaskedTextBox.Name = "gateMaskedTextBox";
             this.gateMaskedTextBox.PromptChar = ' ';
@@ -241,6 +254,19 @@
             this.delButton.Text = "删除";
             this.delButton.UseVisualStyleBackColor = false;
             this.delButton.Click += new System.EventHandler(this.delButton_Click);
+            // 
+            // comboBox1
+            // 
+            this.networkComBox.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.networkComBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.networkComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.networkComBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.networkComBox.FormattingEnabled = true;
+            this.networkComBox.Location = new System.Drawing.Point(90, 109);
+            this.networkComBox.Name = "networkComBox";
+            this.networkComBox.Size = new System.Drawing.Size(149, 25);
+            this.networkComBox.TabIndex = 16;
+      
             // 
             // Manage
             // 
@@ -290,5 +316,7 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button delButton;
         private System.Windows.Forms.MaskedTextBox idMaskedTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox networkComBox;
     }
 }

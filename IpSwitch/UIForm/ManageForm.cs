@@ -1,4 +1,5 @@
 ﻿using Helper;
+using IpSwitch.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,10 @@ namespace IpSwitch.UIForm
         private void Manage_Load(object sender, EventArgs e)
         {
             LoadConfig();
+            networkComBox.DataSource = null;
+            networkComBox.DataSource=NetworkHelper.NetWorkList();
+            networkComBox.DisplayMember = "Name";
+            networkComBox.ValueMember = "Id";
             SelectItem();
         }
 
@@ -54,6 +59,7 @@ namespace IpSwitch.UIForm
             gateMaskedTextBox.Text = model.Gateway;
             dnsMaskedTextBox.Text = model.DNS;
             idMaskedTextBox.Text = model.Id;
+            networkComBox.SelectedValue = model.NetworkID;
 
         }
 
@@ -65,13 +71,17 @@ namespace IpSwitch.UIForm
         private void saveButton_Click(object sender, EventArgs e)
         {
             var se = itemListBox.SelectedIndex;
-            var model = new IpEntity
+            var net=networkComBox.SelectedItem as System.Net.NetworkInformation.NetworkInterface;
+           var model = new IpEntity
             {
                 Name = nameMaskedTextBox.Text.Trim(),
                 IpAddress = ipMaskedTextBox.Text.Trim(),
                 Id = idMaskedTextBox.Text.Trim(),
                 Gateway = gateMaskedTextBox.Text.Trim(),
                 SubnetMask = subnetMaskedTextBox.Text.Trim(),
+                NetworkName= net?.Name,
+                NetworkID=net?.Id,
+                MACAddress= net?.GetPhysicalAddress()?.ToString(),
                 DNS = dnsMaskedTextBox.Text.Trim()
             };
             var isPass = true;
@@ -98,7 +108,8 @@ namespace IpSwitch.UIForm
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            var model = IpSwitchHelper.CreateDefault();
+            var net = networkComBox.SelectedItem as System.Net.NetworkInformation.NetworkInterface;
+            var model = IpSwitchHelper.CreateDefault(net?.Id);
             nameMaskedTextBox.Text = "新方案"+(itemListBox.Items.Count+1);
             ipMaskedTextBox.Text = model.IpAddress;
             subnetMaskedTextBox.Text = model.SubnetMask;
@@ -118,5 +129,14 @@ namespace IpSwitch.UIForm
             itemListBox.SelectedIndex = se >= 0 ?(se>=itemListBox.Items.Count?se-1:se) : 0;
             MessageBox.Show(msg, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+ 
     }
 }

@@ -47,6 +47,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.autoStartCB = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.networkTextBox = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -120,7 +123,7 @@
             // 
             // subnetMaskedTextBox
             // 
-            this.subnetMaskedTextBox.Location = new System.Drawing.Point(90, 79);
+            this.subnetMaskedTextBox.Location = new System.Drawing.Point(90, 106);
             this.subnetMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.subnetMaskedTextBox.Name = "subnetMaskedTextBox";
             this.subnetMaskedTextBox.PromptChar = ' ';
@@ -131,7 +134,7 @@
             // 
             // gateMaskedTextBox
             // 
-            this.gateMaskedTextBox.Location = new System.Drawing.Point(90, 128);
+            this.gateMaskedTextBox.Location = new System.Drawing.Point(90, 144);
             this.gateMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gateMaskedTextBox.Name = "gateMaskedTextBox";
             this.gateMaskedTextBox.PromptChar = ' ';
@@ -142,7 +145,7 @@
             // 
             // dnsMaskedTextBox
             // 
-            this.dnsMaskedTextBox.Location = new System.Drawing.Point(90, 177);
+            this.dnsMaskedTextBox.Location = new System.Drawing.Point(90, 182);
             this.dnsMaskedTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dnsMaskedTextBox.Name = "dnsMaskedTextBox";
             this.dnsMaskedTextBox.PromptChar = ' ';
@@ -153,7 +156,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(9, 85);
+            this.label1.Location = new System.Drawing.Point(9, 108);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 17);
             this.label1.TabIndex = 7;
@@ -162,7 +165,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(9, 37);
+            this.label2.Location = new System.Drawing.Point(9, 34);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 17);
             this.label2.TabIndex = 8;
@@ -171,6 +174,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.networkTextBox);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
@@ -190,7 +195,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(9, 181);
+            this.label4.Location = new System.Drawing.Point(9, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 17);
             this.label4.TabIndex = 10;
@@ -199,7 +204,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(9, 133);
+            this.label3.Location = new System.Drawing.Point(9, 145);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 17);
             this.label3.TabIndex = 9;
@@ -245,12 +250,43 @@
             this.autoStartCB.UseVisualStyleBackColor = true;
             this.autoStartCB.CheckedChanged += new System.EventHandler(this.autoStartCB_CheckedChanged);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(373, 225);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(64, 21);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(9, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 17);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "网卡：";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // maskedTextBox1
+            // 
+            this.networkTextBox.Location = new System.Drawing.Point(90, 68);
+            this.networkTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.networkTextBox.Name = "maskedTextBox1";
+            this.networkTextBox.PromptChar = ' ';
+            this.networkTextBox.ReadOnly = true;
+            this.networkTextBox.Size = new System.Drawing.Size(128, 23);
+            this.networkTextBox.TabIndex = 11;
+            this.networkTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(483, 245);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.autoStartCB);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label5);
@@ -297,5 +333,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.CheckBox autoStartCB;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.MaskedTextBox networkTextBox;
     }
 }
