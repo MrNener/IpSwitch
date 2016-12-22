@@ -19,9 +19,9 @@ namespace IpSwitch.Helper
         /// </summary>
         public static List<NetworkInterface> NetWorkList()
         {
-            var ls = NetworkInterface.GetAllNetworkInterfaces().Where(a=>a.NetworkInterfaceType==NetworkInterfaceType.Ethernet).Select(a =>a).ToList();
+            var ls = NetworkInterface.GetAllNetworkInterfaces().Where(a => a.NetworkInterfaceType == NetworkInterfaceType.Ethernet).Select(a => a).ToList();
             return ls;
-       
+
             //string manage = "SELECT * From Win32_NetworkAdapter WHERE MACAddress IS NOT NULL";
             //ManagementObjectSearcher searcher = new ManagementObjectSearcher(manage);
             //ManagementObjectCollection collection = searcher.Get();
@@ -42,15 +42,8 @@ namespace IpSwitch.Helper
         /// <returns></returns>
         public static bool DisableNetWork(ManagementObject network)
         {
-            try
-            {
-                network.InvokeMethod("Disable", null);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            var res = network.InvokeMethod("Disable", null);
+            return true;
         }
 
         /// <summary>
@@ -60,16 +53,8 @@ namespace IpSwitch.Helper
         /// <returns></returns>
         public static bool EnableNetWork(ManagementObject network)
         {
-            try
-            {
-                network.InvokeMethod("Enable", null);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-
+            var res = network.InvokeMethod("Enable", null);
+            return true;
         }
 
         /// <summary>
@@ -77,7 +62,7 @@ namespace IpSwitch.Helper
         /// </summary>
         /// <param name="netWorkName">网卡名</param>
         /// <returns></returns>
-        public bool NetWorkState(string netWorkName)
+        public bool GetNetworkState(string netWorkName)
         {
             string netState = "SELECT * From Win32_NetworkAdapter";
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(netState);
@@ -86,7 +71,7 @@ namespace IpSwitch.Helper
             {
                 if (manage["Name"].ToString() == netWorkName)
                 {
-                    return true;
+                    return (bool)manage["IPEnabled"];
                 }
             }
             return false;
@@ -97,9 +82,9 @@ namespace IpSwitch.Helper
         /// </summary>
         /// <param name="networkname">网卡名字</param>
         /// <returns></returns>
-        public ManagementObject NetWork(string networkname)
+        public ManagementObject GetNetwork(string networkname)
         {
-            string netState = "SELECT * From Win32_NetworkAdapter";
+            string netState = "SELECT * From Win32_NetworkAdapter ";
 
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(netState);
             ManagementObjectCollection collection = searcher.Get();

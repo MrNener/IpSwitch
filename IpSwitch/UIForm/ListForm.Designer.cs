@@ -41,15 +41,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.networkTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.formNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.autoStartCB = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.networkTextBox = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +192,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "信息";
             // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(9, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 17);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "网卡：";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // networkTextBox
+            // 
+            this.networkTextBox.Location = new System.Drawing.Point(90, 68);
+            this.networkTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.networkTextBox.Name = "networkTextBox";
+            this.networkTextBox.PromptChar = ' ';
+            this.networkTextBox.ReadOnly = true;
+            this.networkTextBox.Size = new System.Drawing.Size(128, 23);
+            this.networkTextBox.TabIndex = 11;
+            this.networkTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(9, 182);
@@ -250,43 +269,12 @@
             this.autoStartCB.UseVisualStyleBackColor = true;
             this.autoStartCB.CheckedChanged += new System.EventHandler(this.autoStartCB_CheckedChanged);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(373, 225);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(64, 21);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(9, 71);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 17);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "网卡：";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // maskedTextBox1
-            // 
-            this.networkTextBox.Location = new System.Drawing.Point(90, 68);
-            this.networkTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.networkTextBox.Name = "maskedTextBox1";
-            this.networkTextBox.PromptChar = ' ';
-            this.networkTextBox.ReadOnly = true;
-            this.networkTextBox.Size = new System.Drawing.Size(128, 23);
-            this.networkTextBox.TabIndex = 11;
-            this.networkTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // ListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(483, 245);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.autoStartCB);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label5);
@@ -333,7 +321,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.CheckBox autoStartCB;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox networkTextBox;
     }

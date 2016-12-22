@@ -11,7 +11,7 @@ namespace IpSwitch.UIForm
 {
     public partial class ListForm : Form
     {
-        private static string version = "v1.0.5";
+        private static string version = "v1.0.6";
 
         private static bool isAuto = false;
 
@@ -54,6 +54,7 @@ namespace IpSwitch.UIForm
             formNotifyIcon.ContextMenuStrip = null;
             ContextMenuStrip menu = new ContextMenuStrip();
             menu.Items.Add("当前：...");
+            //分割线
             menu.Items.Add(new ToolStripSeparator());
             int c = 0;
             foreach (var item in ls.Items)
@@ -76,10 +77,11 @@ namespace IpSwitch.UIForm
                         GetNowStatus(null, model);
                     }
                 });
+                c++;
             }
             menu.Items.Add(new ToolStripSeparator());
-            menu.Items.Add("关于", null, (object s, EventArgs ea) => { MessageBox.Show(":-)"+Environment.NewLine+ version, ":-)", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); });
-            menu.Items.Add("退出", null, (object s, EventArgs ea) => { Close(); Dispose(); Application.Exit(); });
+            menu.Items.Add("关于", null, (object s, EventArgs ea) => { MessageBox.Show(":-)"+Environment.NewLine+ version + Environment.NewLine+"by 周小黑", ":-)", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); });
+            menu.Items.Add("退出", null, (object s, EventArgs ea) => { Close(); Application.Exit(); });
             formNotifyIcon.ContextMenuStrip = menu;
         }
 
@@ -211,16 +213,6 @@ namespace IpSwitch.UIForm
                 set.Save();
             }
 
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var ls = NetworkHelper.NetWorkList();
-            foreach (var item in ls)
-            {
-                MessageBox.Show(item.Name);
-
-            }
         }
     }
 }

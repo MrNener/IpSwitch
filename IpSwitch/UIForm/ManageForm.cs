@@ -24,7 +24,7 @@ namespace IpSwitch.UIForm
         {
             LoadConfig();
             networkComBox.DataSource = null;
-            networkComBox.DataSource=NetworkHelper.NetWorkList();
+            networkComBox.DataSource = NetworkHelper.NetWorkList();
             networkComBox.DisplayMember = "Name";
             networkComBox.ValueMember = "Id";
             SelectItem();
@@ -32,7 +32,7 @@ namespace IpSwitch.UIForm
 
         public void LoadConfig()
         {
-            nameMaskedTextBox.Text ="";
+            nameMaskedTextBox.Text = "";
             ipMaskedTextBox.Text = "";
             subnetMaskedTextBox.Text = "";
             gateMaskedTextBox.Text = "";
@@ -71,28 +71,28 @@ namespace IpSwitch.UIForm
         private void saveButton_Click(object sender, EventArgs e)
         {
             var se = itemListBox.SelectedIndex;
-            var net=networkComBox.SelectedItem as System.Net.NetworkInformation.NetworkInterface;
-           var model = new IpEntity
+            var net = networkComBox.SelectedItem as System.Net.NetworkInformation.NetworkInterface;
+            var model = new IpEntity
             {
                 Name = nameMaskedTextBox.Text.Trim(),
                 IpAddress = ipMaskedTextBox.Text.Trim(),
                 Id = idMaskedTextBox.Text.Trim(),
                 Gateway = gateMaskedTextBox.Text.Trim(),
                 SubnetMask = subnetMaskedTextBox.Text.Trim(),
-                NetworkName= net?.Name,
-                NetworkID=net?.Id,
-                MACAddress= net?.GetPhysicalAddress()?.ToString(),
+                NetworkName = net?.Name,
+                NetworkID = net?.Id,
+                MACAddress = net?.GetPhysicalAddress()?.ToString(),
                 DNS = dnsMaskedTextBox.Text.Trim()
             };
             var isPass = true;
             var res = string.Empty;
-            res= IpSwitchHelper.CheckIpEntity(model, ref isPass);
+            res = IpSwitchHelper.CheckIpEntity(model, ref isPass);
             if (!isPass)
             {
                 MessageBox.Show(res, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (model.Id.Equals(tempId)||string.IsNullOrEmpty(model.Id))
+            if (model.Id.Equals(tempId) || string.IsNullOrEmpty(model.Id))
             {
                 model.Id = Guid.NewGuid().ToString("N");
                 res = IpSwitchHelper.AddConfig(model);
@@ -110,7 +110,7 @@ namespace IpSwitch.UIForm
         {
             var net = networkComBox.SelectedItem as System.Net.NetworkInformation.NetworkInterface;
             var model = IpSwitchHelper.CreateDefault(net?.Id);
-            nameMaskedTextBox.Text = "新方案"+(itemListBox.Items.Count+1);
+            nameMaskedTextBox.Text = "新方案" + (itemListBox.Items.Count + 1);
             ipMaskedTextBox.Text = model.IpAddress;
             subnetMaskedTextBox.Text = model.SubnetMask;
             gateMaskedTextBox.Text = model.Gateway;
@@ -126,17 +126,8 @@ namespace IpSwitch.UIForm
             var se = itemListBox.SelectedIndex;
             var msg = IpSwitchHelper.DeleteConfig(new IpEntity { Id = id });
             LoadConfig();
-            itemListBox.SelectedIndex = se >= 0 ?(se>=itemListBox.Items.Count?se-1:se) : 0;
+            itemListBox.SelectedIndex = se >= 0 ? (se >= itemListBox.Items.Count ? se - 1 : se) : 0;
             MessageBox.Show(msg, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
- 
     }
 }

@@ -12,8 +12,14 @@ namespace Helper
 {
     public class IpEntity
     {
+        /// <summary>
+        /// 方案Id
+        /// </summary>
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
 
+        /// <summary>
+        /// 方案名字
+        /// </summary>
         public string Name { get; set; } = Guid.NewGuid().ToString("N");
 
         /// <summary>
@@ -35,18 +41,27 @@ namespace Helper
         /// </summary>
         public string IpAddress { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string SpareIpAddress { get; set; }
         /// <summary>
         /// 子网掩码
         /// </summary>
         public string SubnetMask { get; set; } 
 
+        /// <summary>
+        /// 备用子网掩码
+        /// </summary>
         public string SpareSubnetMask { get; set; }
         /// <summary>
         /// 网关
         /// </summary>
         public string Gateway { get; set; } 
 
+        /// <summary>
+        /// 备用网关
+        /// </summary>
         public string SpareGateway { get; set; }
 
         /// <summary>
@@ -54,6 +69,9 @@ namespace Helper
         /// </summary>
         public string DNS { get; set; } = "114.114.114.114";
 
+        /// <summary>
+        /// 备用DNS
+        /// </summary>
         public string SpareDNS { get; set; } = "8.8.8.8";
 
     }
@@ -92,6 +110,11 @@ namespace Helper
             return msg;
         }
 
+        /// <summary>
+        /// 修改配置
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public static string UpdateConfig(IpEntity model)
         {
             bool isPass = true;
@@ -300,12 +323,12 @@ namespace Helper
                 if (re != 1 && re != 0)
                 {
                     isOk = false;
-                    return string.Format("修改{0}失败，错误代码：{1}!", pre,re);
+                    return string.Format("修改{0}失败，错误代码：{1}{2}", pre,re, Environment.NewLine);
                 }
-                return "";
+                return string.Format("修改{0},代码：{1}{2}", pre,thisResult, Environment.NewLine);
             }
             isOk = false;
-            return string.Format("修改{0}失败，错误代码：{1}!", pre, thisResult.ToString());
+            return string.Format("修改{0}失败，错误代码：{1}{2}", pre, thisResult.ToString(), Environment.NewLine);
         }
 
         public static string SetNetworkAdapter(IpEntity model,ref bool isOk)
